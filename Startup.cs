@@ -23,6 +23,7 @@ using System;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using AdviceFirstApi.Filters;
+using AdviceFirstApi.Services;
 
 namespace AdviceFirstApi
 {
@@ -95,6 +96,7 @@ namespace AdviceFirstApi
 
             services.AddDbContext<AdviceFirstDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IAdviceFirstRepository, AdviceFirstRepository>();
+            services.AddScoped<IEmailDropParser, EmailDropParser>();
             //services.AddAutoMappervices(AppDomain.CurrentDomain.GetAssemblies());
             services.AddAutoMapper(typeof(Startup));
             var mappingConfig = new MapperConfiguration(mc =>
